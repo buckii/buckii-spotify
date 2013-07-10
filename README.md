@@ -12,5 +12,8 @@ Clone this repository into a directory that's being served by Apache on the Spot
 
 ```bash
 $ git submodule init && git submodule update
+```
 
-Launch index.php and follow the setup steps. OIt works best when the target machine has a static IP address.
+Launch index.php and follow the setup steps.
+
+**Note:** This whole thing works best when the target machine has a static IP address.
