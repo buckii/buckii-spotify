@@ -32,6 +32,9 @@ var Spotify = function () {
       dataType: 'json',
       success: function ( ajaxresponse ) {
         response = ajaxresponse;
+        if ( cmd !== 'info' ) {
+          loadTrackData();
+        }
       },
     });
     return response;
