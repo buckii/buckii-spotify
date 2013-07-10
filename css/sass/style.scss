@@ -48,7 +48,7 @@ html { font-size: 62.5%; } // Allows us to define rems in base-10
 body { font-family: 'Helvetica Neue', sans-serif; @include font-size(16); line-height: 1.8em; color: #333; }
 
 /** Content styles */
-#now-playing { position: relative; padding: 2%; font-size: .8em; color: #fff; text-shadow: 1px 1px 1px #000; background: rgba(0, 0, 0, 0.6);
+#now-playing { position: relative; min-height: 150px; padding: 2%; font-size: .8em; color: #fff; text-shadow: 1px 1px 1px #000; background: rgba(0, 0, 0, 0.6);
   span { display: block; }
   #track-title { font-size: 1.6em; }
   .loading-indicator { position: absolute; left: 0; top: 0; z-index: 2; width: 100%; height: 100%; padding: 90px 1em 1em; font-size: 1.5em; text-align: center; font-weight: bold; background: image-url( 'loading.gif' ) center 30px no-repeat rgba(0, 0, 0, 0.6); display: none; }

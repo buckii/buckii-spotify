@@ -93,6 +93,16 @@ jQuery( function ( $ ) {
       spotify.sendCommand( btn.data( 'command' ) );
     }
   });
+  $( document ).on( 'keydown', function ( e ) {
+    var keycodes = {
+      32: 'play/pause', // Spacebar
+      37: 'previous', // Left
+      39: 'next' // Right
+    }
+    if ( keycodes[ e.keyCode ] ) {
+      spotify.sendCommand( keycodes[ e.keyCode ] );
+    }
+  });
 
   // Load the current track information
   spotify.loadTrackData();
