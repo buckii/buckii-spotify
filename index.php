@@ -31,7 +31,7 @@ if ( isset( $_POST['action'] ) ) {
   <div id="wrapper">
     <h1>Buckii Spotify</h1>
 
-  <?php if ( $requirements = $spotify->check_requirements ) : ?>
+  <?php if ( $requirements = $spotify->check_requirements() ) : ?>
     <h2>Check requirements</h2>
     <ol id="requirement-check">
     <?php foreach ( $requirements as $msg ) : ?>

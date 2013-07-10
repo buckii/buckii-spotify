@@ -102,7 +102,7 @@ class Buckii_Spotify {
     }
 
     // Remove track information for advertisements
-    if ( preg_match( '/^http:/i', $data['album'] ) ) {
+    if ( preg_match( '/^(http|spotify):/i', $data['album'] ) ) {
       $data['album'] = 'n/a';
     }
 
