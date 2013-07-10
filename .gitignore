@@ -1,0 +1,6 @@
+# Keep these files out of the repo
+app/config.php
+
+# Hidden files
+*.DS_Store
+*Thumbs.db
