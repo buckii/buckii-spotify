@@ -76,6 +76,14 @@ class Buckii_Spotify {
   }
 
   /**
+   * Return the URL to the remote page
+   * @return str
+   */
+  public function get_remote_url() {
+    return sprintf( 'http://%s%s/remote', gethostname(), dirname( $_SERVER['PHP_SELF'] ) );
+  }
+
+  /**
    * Return information about the current track
    * @return array
    */
@@ -91,6 +99,11 @@ class Buckii_Spotify {
     $data = array();
     foreach ( $regex as $key=>$pattern ) {
       $data[ $key ] = ( preg_match( sprintf( '/%s:\s+(.+)/', $pattern ), $info, $match ) ? $match['1'] : '' );
+    }
+
+    // Remove track information for advertisements
+    if ( preg_match( '/^http:/i', $data['album'] ) ) {
+      $data['album'] = 'n/a';
     }
 
     // Just return the formatted time for duration

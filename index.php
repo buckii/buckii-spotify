@@ -25,6 +25,7 @@ if ( isset( $_POST['action'] ) ) {
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Buckii Spotify</title>
+<link href="css/generated/style.css" type="text/css" rel="stylesheet" media="all" />
 </head>
 <body>
   <div id="wrapper">
@@ -37,6 +38,13 @@ if ( isset( $_POST['action'] ) ) {
       <li class="<?php echo $msg['class']; ?>"><?php echo $msg['message']; ?></li>
     <?php endforeach; ?>
     </ol>
+
+  <?php else : ?>
+
+    <div id="remote">
+      <p>Sweet, you're ready to go! Visit <a href="<?php echo $spotify->get_remote_url(); ?>"><?php echo $spotify->get_remote_url(); ?></a> in your browser.</p>
+    </div>
+
   <?php endif; ?>
 
   </div>

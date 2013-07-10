@@ -11,6 +11,8 @@ var Spotify = function () {
   "use strict";
 
   var $ = jQuery,
+  currentTrack,
+  pollInterval,
 
   /**
    * Send a command to Spotify
@@ -37,16 +39,32 @@ var Spotify = function () {
 
   loadTrackData = function () {
     var nowPlaying = $('#now-playing'),
-    track;
+    track = sendCommand( 'info' );
 
-    nowPlaying.addClass( 'loading' );
-    if ( track = this.sendCommand( 'info' ) ) {
-      $('#track-title').text( track.track );
+    if ( track && ( ! currentTrack || track.track !== currentTrack.track ) ) {
+      nowPlaying.addClass( 'loading' );
+      $('#track-title').html( track.track );
       $('#track-artist').html( track.artist );
       $('#track-album').html( track.album );
+      currentTrack = track;
       nowPlaying.removeClass( 'loading' );
     }
     return true;
+  },
+
+  /**
+   * Start or stop polling for track changes
+   * @param bool start Should we be polling?
+   * @param int frequency Number of milliseconds between polls
+   * @return bool
+   */
+  polling = function ( start, frequency ) {
+    if ( start ) {
+      this.pollInterval = window.setInterval( loadTrackData, frequency || 5000 );
+    } else {
+      window.clearInterval( this.pollInterval );
+    }
+    return ( start );
   };
 
   /**
@@ -54,7 +72,8 @@ var Spotify = function () {
    */
   return {
     sendCommand: sendCommand,
-    loadTrackData: loadTrackData
+    loadTrackData: loadTrackData,
+    polling: polling
   }
 };
 
@@ -77,4 +96,5 @@ jQuery( function ( $ ) {
 
   // Load the current track information
   spotify.loadTrackData();
+  spotify.polling( true, 5000 );
 });

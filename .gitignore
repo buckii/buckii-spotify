@@ -4,3 +4,4 @@ app/config.php
 # Hidden files
 *.DS_Store
 *Thumbs.db
+*.sass-cache*

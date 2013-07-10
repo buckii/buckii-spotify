@@ -1,0 +1,70 @@
+/**
+ * Primary stylesheet
+ * @package Buckii Spotify
+ * @author Buckeye Interactive
+ */
+/*! Warning: this is a generated stylesheet! To make changes please edit style.scss */
+
+@import 'compass';
+
+/**
+ * Provide both pixel- and rem-based font-sizes
+ * @param int $sizeValue The desired font-size in pixels *without* a unit (e.g. `@include font-size(13);`)
+ * @link http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
+ */
+@mixin font-size( $sizeValue: 1.6 ) {
+  font-size: $sizeValue + px;
+  font-size: ($sizeValue / 10) + rem;
+}
+
+/**
+ * Provide any value in both pixel- and rem-based measurements
+ * @param str $property The CSS property to define
+ * @param int $value The pixel-based value for the measurement
+ */
+@mixin x-rem( $property, $value ) {
+  #{$property}: $value + px;
+  #{$property}: ($value / 10) + rem;
+}
+
+/** CSS Reset */
+* { @include box-sizing( border-box ); }
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; vertical-align: baseline; background: transparent; border: 0; }
+body { line-height: 1; }
+header, nav, footer, article, section { display: block; margin: 0; padding: 0; }
+h1, h2, h3, h4, h5, h6 { clear: both; font-weight: bold; }
+ul { list-style: none; }
+blockquote { quotes: none; }
+blockquote:before, blockquote:after { content: ''; content: none; }
+del { text-decoration: line-through; }
+table { border-collapse: collapse; border-spacing: 0; }
+a img { border: none; }
+
+/** Structure */
+#wrapper { min-width: 320px; max-width: 920px; margin: 0 auto; }
+
+/** Base typography */
+html { font-size: 62.5%; } // Allows us to define rems in base-10
+body { font-family: 'Helvetica Neue', sans-serif; @include font-size(16); line-height: 1.8em; color: #333; }
+
+/** Content styles */
+#now-playing { position: relative; padding: 2%; font-size: .8em; color: #fff; text-shadow: 1px 1px 1px #000; background: rgba(0, 0, 0, 0.6);
+  span { display: block; }
+  #track-title { font-size: 1.6em; }
+  .loading-indicator { position: absolute; left: 0; top: 0; z-index: 2; width: 100%; height: 100%; padding: 90px 1em 1em; font-size: 1.5em; text-align: center; font-weight: bold; background: image-url( 'loading.gif' ) center 30px no-repeat rgba(0, 0, 0, 0.6); display: none; }
+  &.loading {
+    .loading-indicator { display: block; }
+  }
+}
+
+#controls { overflow: hidden; padding: 0 2%; text-align: center;
+  li { float: left; display: block; width: 25%;
+    &.play { width: 50%; }
+    a { display: block; }
+  }
+}
+
+/** Media queries */
+@media ( min-width: 600px ) {
+  body { padding: 2%; }
+}

@@ -10,22 +10,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Buckii Spotify</title>
+<link href="css/generated/style.css" type="text/css" rel="stylesheet" media="all" />
 </head>
 <body>
   <div id="wrapper" role="application">
 
-    <div id="now-playing">
-      <h1>Now Playing</h1>
+    <div id="now-playing" class="loading">
+      <h1>Now Playing:</h1>
       <p>
         <span id="track-title"></span>
         <span id="track-artist"></span>
         <span id="track-album"></span>
       </p>
+      <div class="loading-indicator">Loading track information</div>
     </div>
 
     <ul id="controls">
       <li><a href="#" id="prev-track" role="button" data-command="previous">Previous</a></li>
-      <li><a href="#" id="play-pause" role="button" data-command="play/pause">Play/Pause</a></li>
+      <li class="play"><a href="#" id="play-pause" role="button" data-command="play/pause">Play/Pause</a></li>
       <li><a href="#" id="next-track" role="button" data-command="next">Next</a></li>
     </ul><!-- #controls -->
 
