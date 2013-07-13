@@ -94,7 +94,8 @@ class Buckii_Spotify {
       'track' => 'Track',
       'album' => 'Album',
       'duration' => 'Duration',
-      'status' => 'Player'
+      'status' => 'Player',
+      'volume' => 'Volume'
     );
     $data = array();
     foreach ( $regex as $key=>$pattern ) {
@@ -108,6 +109,10 @@ class Buckii_Spotify {
 
     // Just return the formatted time for duration
     $data['duration'] = preg_replace( '/\s\(.+$/', '', $data['duration'] );
+
+    // Determine shuffle/repeat status
+    $data['shuffle'] = (boolean) preg_match( '/Shuffle is on/i', $info );
+    $data['repeat'] = (boolean) preg_match( '/Repeat is on/i', $info );
 
     // Clean up the data
     $data = array_map( 'trim', $data );

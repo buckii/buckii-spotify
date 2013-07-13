@@ -1,3 +1,5 @@
 [submodule "lib/SpotifyControl"]
 	path = lib/SpotifyControl
-	url = https://github.com/dronir/SpotifyControl.git
+	#url = https://github.com/dronir/SpotifyControl.git
+	# Until pull request #5 gets approved we'll use the Buckii fork
+  url = https://github.com/buckii/SpotifyControl.git

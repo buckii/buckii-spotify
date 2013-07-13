@@ -29,6 +29,9 @@
       <li><a href="#" id="prev-track" role="button" data-command="previous">Previous</a></li>
       <li class="play"><a href="#" id="play-pause" role="button" data-command="play/pause">Play/Pause</a></li>
       <li><a href="#" id="next-track" role="button" data-command="next">Next</a></li>
+      <li><a href="#" id="shuffle" role="button" data-command="shuffle">Shuffle</a></li>
+      <li><a href="#" id="repeat" role="button" data-command="repeat">Repeat</a></li>
+      <li class="volume"><input name="volume" id="volume" type="range" min="0" max="100" step="1" /></li>
     </ul><!-- #controls -->
 
   </div><!-- #wrapper -->

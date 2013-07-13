@@ -13,6 +13,7 @@ var Spotify = function () {
   var $ = jQuery,
   currentTrack,
   pollInterval,
+  volumeTimeout,
 
   /**
    * Send a command to Spotify
@@ -42,8 +43,14 @@ var Spotify = function () {
 
   loadTrackData = function () {
     var nowPlaying = $('#now-playing'),
+    buttons = {
+      shuffle: $('#shuffle'),
+      repeat: $('#repeat'),
+      volume: $('#volume')
+    },
     track = sendCommand( 'info' );
 
+    // Track info
     if ( track && ( ! currentTrack || track.track !== currentTrack.track ) ) {
       nowPlaying.addClass( 'loading' );
       $('#track-title').html( track.track );
@@ -52,6 +59,12 @@ var Spotify = function () {
       currentTrack = track;
       nowPlaying.removeClass( 'loading' );
     }
+
+    // Status
+    buttons.shuffle.toggleClass( 'active', Boolean( track.shuffle ) );
+    buttons.repeat.toggleClass( 'active', Boolean( track.repeat ) );
+    buttons.volume.val( track.volume );
+
     return true;
   },
 
@@ -76,7 +89,8 @@ var Spotify = function () {
   return {
     sendCommand: sendCommand,
     loadTrackData: loadTrackData,
-    polling: polling
+    polling: polling,
+    volumeTimeout: volumeTimeout
   }
 };
 
@@ -96,6 +110,17 @@ jQuery( function ( $ ) {
       spotify.sendCommand( btn.data( 'command' ) );
     }
   });
+
+  // Volume slider
+  $('#volume').on( 'change', function () {
+    var vol = $(this);
+    clearTimeout( spotify.volumeTimeout );
+    spotify.volumeTimeout = setTimeout( function () {
+      spotify.sendCommand( 'volume ' + vol.val() );
+    }, 300 );
+  });
+
+  // Keyboard controls
   $( document ).on( 'keydown', function ( e ) {
     var keycodes = {
       32: 'play/pause', // Spacebar
@@ -108,6 +133,6 @@ jQuery( function ( $ ) {
   });
 
   // Load the current track information
-  spotify.loadTrackData();
+  spotify.loadTrackData(); // This will open Spotify if it's not already open...
   spotify.polling( true, 5000 );
 });
